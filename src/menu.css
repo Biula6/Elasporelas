@@ -1,0 +1,478 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fce7e7;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Barra superior */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #5c1919 0%, #6C2D2D 100%);
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.participar {
+    background-color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.participar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.participar a {
+    text-decoration: none;
+    color: #5c1919;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.normal{
+    background-color: white !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.andante{
+    background-color: white !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky; 
+    top: 0;
+    z-index: 1000; 
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: relative;
+    background-color: white !important;
+}
+
+.logo img {
+    width: 100%;
+    max-width: 85px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+    transform: scale(1.05);
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: transparent;
+}
+
+.menu a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #5e0a0a;
+    font-size: 18px;
+    font-family: 'Georgia', serif;
+    padding: 12px 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    background: transparent;
+}
+
+.menu a:hover {
+    background-color: #fce7e7;
+    transform: translateY(-2px);
+}
+
+.menu a.active {
+    background-color: #6C2D2D;
+    color: white;
+}
+
+/* Menu hambúrguer */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #5c1919;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+}
+
+/* MENU MOBILE - CORRIGIDO */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 50px;
+    right: 0;
+    bottom: 0;
+    top: 120px;
+    background-color: rgba(92, 25, 25, 0.95);
+    border-radius: 20px 0px 0px 20px;
+    list-style: none;
+    z-index: 1000;
+    padding: 80px 20px 20px 20px;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu.open {
+    display: block;
+    transform: translateX(0);
+}
+
+.mobile-menu li {
+    margin-bottom: 5px;
+}
+
+.mobile-menu li a {
+    display: block;
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+}
+
+.mobile-menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Dropdown desktop */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(92, 25, 25, 0.895);
+    min-width: 265px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 10px 0;
+    margin-top: 8px;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a {
+     display: block;
+    color: white !important;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent !important;
+}
+
+.dropdown-content a:hover {
+        background: rgba(255, 255, 255, 0.15) !important;
+    padding-left: 25px;
+    transform: none;
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown:hover .dropdown-content {
+        display: block;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+
+/* Efeito de flutuação suave */
+.dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid rgba(92, 25, 25, 0.95);
+}
+
+/* DROPDOWN MOBILE - CORRIGIDO */
+.mobile-menu .dropdown {
+    width: 100%;
+}
+
+.mobile-menu .dropdown-content {
+    display: none;
+    position: static;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    width: 100%;
+    border-radius: 0;
+    margin-top: 0;
+    padding: 0;
+}
+
+.mobile-menu .dropdown.active .dropdown-content {
+    display: block;
+}
+
+.mobile-menu .dropdown-content a {
+    background-color: transparent !important;
+    color: white !important;
+    padding: 12px 20px 12px 35px;
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu .dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Ícone de seta */
+.mobile-menu .dropbtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.arrow-icon {
+    display: inline-block;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+    font-size: 12px;
+}
+
+.arrow-icon::after {
+    content: '▼';
+}
+
+.mobile-menu .dropdown.active .arrow-icon {
+    transform: rotate(180deg);
+}
+
+/* Botão de fechar (adicione no seu JSX) */
+.close-menu-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    
+    .menu {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    /* Estilo do hamburger quando menu está aberto */
+    nav.open .hamburger .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    nav.open .hamburger .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    nav.open .hamburger .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+}
+
+@media (max-width: 480px) {
+    .top-bar {
+        padding: 10px 15px;
+    }
+
+    .participar {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    nav {
+        padding: 15px;
+    }
+
+    .mobile-menu {
+        padding: 70px 15px 15px 15px;
+    }
+
+    .mobile-menu li a {
+        padding: 12px 15px;
+        font-size: 15px;
+    }
+
+    .mobile-menu .dropdown-content a {
+        padding: 10px 15px 10px 30px;
+        font-size: 14px;
+    }
+}
+
+/* Roda pé */
+footer {
+    background-color: #4a1010;
+    color: #fff;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+    border-top: 5px solid #6C2D2D;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 280px;
+    margin: 25px;
+    text-align: left;
+    border-left: 3px solid #6C2D2D;
+    padding-left: 15px;
+    border-radius: 5px;
+}
+
+.footer-section h3 {
+    color: #ffe7e7;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-section p {
+    color: #d8b4b4;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+/* This is the key change for the social links */
+.footer-section.social .social-links {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column; /* Always stack them in a column */
+    justify-content: flex-start;
+    gap: 15px; /* Space between the links */
+}
+
+/* Style for the social links themselves */
+.footer-section.social .social-links a {
+    color: #d8b4b4; /* Link color */
+    text-decoration: none; /* Remove underline */
+    display: flex; /* Make the links themselves flex containers to align icon and text */
+    align-items: center; /* Vertically center the icon and text */
+    font-size: 0.95rem;
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.footer-section.social .social-links a:hover {
+    color: #fff; /* White color on hover */
+}
+
+.footer-bottom {
+    margin-top: 30px;
+    padding-top: 25px;
+    font-size: 1rem;
+    border-top: 2px solid #6C2D2D;
+    color: #e0e0e0;
+}
+
+footer img {
+    vertical-align: middle;
+    margin-right: 8px; /* Margin for spacing between image and text */
+    width: 30px;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        text-align: center; /* Center align text for smaller screens */
+        border-left: none; /* Remove left border on small screens */
+        padding-left: 0; /* Remove left padding on small screens */
+    }
+
+    .footer-section.social .social-links {
+        /* On smaller screens, you might still want to keep the links centered if the section itself is centered */
+        justify-content: center;
+    }
+
+    .footer-section.social .social-links a span {
+        display: inline-block;
+        margin-left: 8px;
+    }
+}
